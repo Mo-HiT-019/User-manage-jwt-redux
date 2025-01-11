@@ -1,0 +1,15 @@
+.login-body{
+    background-color: rgb(72, 68, 68);
+    height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container{
+    background-color: rgb(203, 193, 180);
+    height:80%;
+    width:500px;
+    padding: 10px;
+    border-radius: 5%;
+}
