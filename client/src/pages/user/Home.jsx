@@ -26,17 +26,7 @@ const Home = () => {
         }
       };
 
-      function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-        return null; // Return null if the cookie is not found
-      }
-      
-      // Usage
-      const accessToken = getCookie('accessToken');
-      console.log('Access Token:', accessToken);
-      
+   
     
    
     return (
@@ -49,6 +39,8 @@ const Home = () => {
           <button onClick={handleSignout}>Logout</button>
         </nav>
         </div>
+
+      
         
       </div>
     );

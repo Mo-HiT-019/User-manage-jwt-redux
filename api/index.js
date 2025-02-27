@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import userRoute from './routes/userRoutes.js'
 import authRoute from './routes/authRoutes.js'
 import cookieParser from "cookie-parser";
+import adminRoute from './routes/adminRoute.js'
 
 dotenv.config()
 
@@ -19,7 +20,7 @@ const connectDB = async () => {
     try { 
         console.log("hi")
         await mongoose.connect(process.env.MONGO); 
-        console.log('MongoDB connected successfully');
+        console.log('MongoDB connected successfully'); 
      } catch (err) {
          console.error('Error connecting to MongoDB:', err); process.exit(1); 
         }
@@ -41,4 +42,5 @@ app.listen(5000,()=>{
 
 app.use('/api/user',userRoute);
 app.use('/api/auth',authRoute);
+app.use('/api/admin',adminRoute);
   

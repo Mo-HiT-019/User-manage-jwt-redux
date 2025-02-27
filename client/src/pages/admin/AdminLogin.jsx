@@ -3,11 +3,11 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './auth.css'
 import { useDispatch,useSelector } from 'react-redux';
-import { signInFailure, signInStart, signInSuccess } from '../../redux/user/userSlice';
+import { adminSigninStart,adminSigninSuccess,adminSigninFail } from '../../redux/admin/adminSlice';
 import axiosInstance from '../../config';
 
 
-const Login = () => {
+const AdminLogin = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
@@ -19,21 +19,21 @@ const Login = () => {
     const handleSubmit=async(e)=>{
       e.preventDefault();
       try{
-        dispatch(signInStart());
-        const response = await axiosInstance.post('/auth/sign-in', { email, password });
+        dispatch(adminSigninStart());
+        const response = await axiosInstance.post('/auth/admin-sign-in', { email, password });
         const data=await response.data;
         console.log(data);
 
         if (data.success === false) {
-          dispatch(signInFailure(data));
+          dispatch(adminSigninFail(data));
           return;
         }
 
-      dispatch(signInSuccess(data));
-      navigate('/');
+      dispatch(adminSigninSuccess(data));
+      console.log('Navigatinf');
+      navigate('/admin-dash');
       }catch(error){
-        alert('Incvalid user')
-        dispatch(signInFailure(error));
+        dispatch(adminSigninFail(error));
       }
     }
 
@@ -43,7 +43,7 @@ const Login = () => {
     return ( 
       <div className="login-body">
         <div className="login-container">
-          <h2>Login</h2>
+          <h2>Admin Login</h2>
 
           <form onSubmit={handleSubmit}>
             <div class="form-group">
@@ -86,4 +86,4 @@ const Login = () => {
     );
   };
   
-  export default Login;
+  export default AdminLogin;
